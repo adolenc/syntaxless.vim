@@ -88,8 +88,8 @@ function! syntaxless#RemoveSyntax()
   let s:already_cleaned_up_filetypes[&filetype] = 1
 endfunction
 
-function! syntaxless#Toggle(on)
-  let s:syntaxless_enabled = a:on
+function! syntaxless#SetEnabled(enabled)
+  let s:syntaxless_enabled = a:enabled
   if s:syntaxless_enabled
     call syntaxless#RemoveSyntax()
   else
