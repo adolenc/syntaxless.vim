@@ -19,7 +19,7 @@ Simply installing and letting your plugin manager do the rest is enough for the
 plugin to work. By default, strings, comments, and TODOs are whitelisted
 globally, while all the other syntax groups are cleared up.
 
-#### `syntaxless#Whitelist(filetype, syntax_groups)`
+#### `syntaxless#Whitelist(filetype{, syntax_groups})`
 
 The main function to define syntax group whitelist globally and/or for a
 specific filetype. `filetype` can either be a string `'global'` for global
