@@ -19,29 +19,32 @@ Simply installing and letting your plugin manager do the rest is enough for the
 plugin to work. By default, strings, comments, and TODOs are whitelisted
 globally, while all the other syntax groups are cleared up.
 
-#### `g:syntaxless_whitelisted_syntax_groups`
+#### `syntaxless#Whitelist(filetype, syntax_groups)`
 
-The main dictionary to define syntax group whitelists at a global or
-per-specific-filetype level. Keys are either `'global'` or `filetype`, while
-values are either a list of strings (whitelisted syntax groups), or string
-`'all'` for whitelisting the entire filetype.
+The main function to define syntax group whitelist globally and/or for a
+specific filetype. `filetype` can either be a string `'global'` for global
+whitelist, or `filetype` for whitelisting groups for specific filetype.
+`syntax_groups` should be a list of strings (whitelisted syntax groups), but
+can be ommited for whitelisting the entire filetype. Per-filetype whitelisted
+groups override the global whitelisted groups for that specific filetype.
 
-Default: `{'global': ['String', 'Comment', 'Todo']}`
+Default: `call syntaxless#Whitelist('global', ['String', 'Comment', 'Todo'])`
 
 Example configuration:
 ```vim
-let g:syntaxless_whitelisted_syntax_groups = {}
-
 " Globally whitelist strings and comments
-let g:syntaxless_whitelisted_syntax_groups.global = ['String', 'Comment']
+call syntaxless#Whitelist('global', ['String', 'Comment'])
 
-" Also allow syntax highlighting of Python's pythonStatement group
-let g:syntaxless_whitelisted_syntax_groups.python = ['pythonStatement']
+" For Python, whitelist pythonStatement, strings, and comments
+call syntaxless#Whitelist('python', ['pythonStatement', 'String', 'Comment'])
 
 " Whitelist all syntax groups for markdown and nerdtree buffers
-let g:syntaxless_whitelisted_syntax_groups.markdown = 'all'
-let g:syntaxless_whitelisted_syntax_groups.nerdtree = 'all'
+call syntaxless#Whitelist('markdown')
+call syntaxless#Whitelist('nerdtree')
 ```
+
+To remove the default global whitelist, use `call
+syntaxless#Whitelist('global', [])`.
 
 To find a list of possible syntax groups for a specific file, run `:syntax
 list` with that file open, or check `:h group-name` for a global list of vim's

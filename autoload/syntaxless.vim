@@ -35,16 +35,20 @@ function! s:AllSyntaxGroups()
 endfunction
 
 function! s:ApplyWhitelist(all_groups)
-  " Return a subset of all_groups that fit the whitelist
+  " Return a subset of all_groups that do not fit the whitelist
   " {group-name -> linked-group|NONE}
 
-  let ft_whitelist = get(g:syntaxless_whitelisted_syntax_groups, &filetype, [])
+  let ft_whitelist = get(s:whitelisted_syntax_groups, &filetype, [])
   if type(ft_whitelist) ==# type('') && ft_whitelist ==? 'all'
-    return a:all_groups
+    return {}
   endif
 
-  let whitelist = get(g:syntaxless_whitelisted_syntax_groups, 'global', [])
-              \ + ft_whitelist
+  if len(ft_whitelist) > 0 
+    let whitelist = ft_whitelist
+  else
+    let whitelist = get(s:whitelisted_syntax_groups, 'global', [])
+  endif
+
   let groups = {}
   for [group, linked_group] in items(a:all_groups)
     if !(index(whitelist, group) > -1 || index(whitelist, linked_group) > -1)
@@ -67,6 +71,19 @@ function! syntaxless#RemoveSyntax()
   let all_groups = s:AllSyntaxGroups()
   let groups_to_remove = s:ApplyWhitelist(all_groups)
   call s:RemoveSyntaxGroups(groups_to_remove)
+endfunction
+
+function! syntaxless#Whitelist(filetype, ...)
+  if a:0 == 0
+    let syntax_groups = 'all'
+  elseif a:0 == 1
+    let syntax_groups = a:1
+  endif
+
+  if !exists('s:whitelisted_syntax_groups')
+    let s:whitelisted_syntax_groups = {}
+  endif
+  let s:whitelisted_syntax_groups[a:filetype] = syntax_groups
 endfunction
 
 function! syntaxless#EchoSyntaxGroup()

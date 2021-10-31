@@ -3,10 +3,7 @@ if exists('g:loaded_syntaxless')
 endif
 
 
-if !exists('g:syntaxless_whitelisted_syntax_groups')
-  let g:syntaxless_whitelisted_syntax_groups = {}
-  let g:syntaxless_whitelisted_syntax_groups.global = ['String', 'Comment', 'Todo']
-endif
+call syntaxless#Whitelist('global', ['String', 'Comment', 'Todo'])
 
 augroup syntaxless
   autocmd!
