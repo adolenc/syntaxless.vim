@@ -13,11 +13,11 @@ Install using your favorite plugin manager. E.g. using
 Plug 'adolenc/syntaxless.vim'
 ```
 
-## Usage
-
 Simply installing and letting your plugin manager do the rest is enough for the
 plugin to work. By default, strings, comments, and TODOs are whitelisted
 globally, while all the other syntax groups are cleared up.
+
+## Usage
 
 #### `syntaxless#Whitelist(filetype{, syntax_groups})`
 
@@ -63,7 +63,7 @@ Command to re-enable the plugin until the end of the current session.
 
 #### `syntaxless#EchoSyntaxGroup()`
 
-Utility function that echos the syntax group under cursor. Copied from
+Utility function that prints the syntax group under cursor. Copied from
 [this](https://stackoverflow.com/a/37040415) Stack Overflow answer.
 
 ## Why 
