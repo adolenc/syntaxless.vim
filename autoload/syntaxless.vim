@@ -66,8 +66,10 @@ endfunction
 function! s:RemoveSyntaxGroups(groups)
   " Remove the actual highlights from the selected groups
 
-  for g in keys(a:groups)
-    exe "hi " . g . " guifg=none guibg=none guisp=none gui=none"
+  let gui_reset = 'guifg=none guibg=none guisp=none gui=none'
+  let tui_reset = 'ctermfg=none ctermbg=none cterm=none'
+  for group in keys(a:groups)
+    exe "hi! " . group . ' ' . gui_reset . ' ' . tui_reset
   endfor
 endfunction
 
