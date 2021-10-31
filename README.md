@@ -4,6 +4,14 @@ A (Neo)vim plugin for removing all but some whitelisted syntax highlighting,
 allowing you to use your favorite colorscheme. Think `:syntax less`, not
 syntaxless.
 
+This is an example screenshot comparing file with the
+[dracula](https://github.com/dracula/vim) colorscheme in the first window,
+using syntaxless.vim with strings, comments, and TODOs whitelisted in the
+second, and finally with `:syntax off` in the third window:
+
+
+![image](https://user-images.githubusercontent.com/9569399/139594575-1ccdba91-f667-42a1-8fe0-5a543464c969.png)
+
 ## Installing
 
 Install using your favorite plugin manager. E.g. using
