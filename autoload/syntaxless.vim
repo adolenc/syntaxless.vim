@@ -77,12 +77,6 @@ function! syntaxless#RemoveSyntax()
   if !s:syntaxless_enabled || get(s:already_cleaned_up_filetypes, &filetype, 0)
     return
   endif
-  if !exists("syntax_on")
-    " This might be dangerous, but since this is a plugin that deals with
-    " syntax highlighting and needs `:syntax on` in order to work, we force
-    " set it here.
-    syntax on
-  endif
 
   let all_groups = s:AllSyntaxGroups()
   let groups_to_remove = s:ApplyWhitelist(all_groups)

@@ -14,8 +14,11 @@ Plug 'adolenc/syntaxless.vim'
 ```
 
 Simply installing and letting your plugin manager do the rest is enough for the
-plugin to work. By default, strings, comments, and TODOs are whitelisted
-globally, while all the other syntax groups are cleared up.
+plugin to work. This plugin relies on having `:syntax on` defined, so make sure
+you have this set somewhere in your vimrc.
+
+By default, strings, comments, and TODOs are whitelisted globally, while all
+the other syntax groups are cleared up.
 
 ## Usage
 
