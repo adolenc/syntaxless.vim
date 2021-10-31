@@ -53,6 +53,14 @@ syntax groups.
 To figure out the filetype for a specific file, use `:set ft?` with that file
 open.
 
+#### `:SyntaxlessDisableForSession`
+
+Command to disable the plugin until the end of the current session.
+
+#### `:SyntaxlessEnableForSession`
+
+Command to re-enable the plugin until the end of the current session.
+
 #### `syntaxless#EchoSyntaxGroup()`
 
 Utility function that echos the syntax group under cursor. Copied from

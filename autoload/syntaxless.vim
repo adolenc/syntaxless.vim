@@ -68,9 +68,28 @@ function! s:RemoveSyntaxGroups(groups)
 endfunction
 
 function! syntaxless#RemoveSyntax()
+  if !get(s:, 'syntaxless_enabled', 1)
+    return
+  endif
   let all_groups = s:AllSyntaxGroups()
   let groups_to_remove = s:ApplyWhitelist(all_groups)
   call s:RemoveSyntaxGroups(groups_to_remove)
+endfunction
+
+function! syntaxless#Toggle(on)
+  let s:syntaxless_enabled = a:on
+  if s:syntaxless_enabled
+    call syntaxless#RemoveSyntax()
+  else
+    " We need to restore colorscheme and syntax highlighting, so we refresh
+    " the current colorscheme.
+    redir => active_colorscheme
+    silent execute "colorscheme"
+    redir END
+
+    let active_colorscheme = split(active_colorscheme, '\n')[0]
+    exe "colorscheme " . active_colorscheme
+  endif
 endfunction
 
 function! syntaxless#Whitelist(filetype, ...)
