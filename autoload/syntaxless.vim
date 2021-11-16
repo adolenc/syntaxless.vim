@@ -73,8 +73,8 @@ function! s:RemoveSyntaxGroups(groups)
   endfor
 endfunction
 
-function! syntaxless#RemoveSyntax()
-  if !s:syntaxless_enabled || get(s:already_cleaned_up_filetypes, &filetype, 0)
+function! syntaxless#RemoveSyntax(force)
+  if !s:syntaxless_enabled || (!a:force && get(s:already_cleaned_up_filetypes, &filetype, 0))
     return
   endif
 

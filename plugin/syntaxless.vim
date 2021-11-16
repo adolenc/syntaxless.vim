@@ -7,7 +7,8 @@ call syntaxless#Whitelist('global', ['String', 'Comment', 'Todo'])
 
 augroup syntaxless
   autocmd!
-  autocmd ColorScheme,FileType,BufNewFile,BufRead * call syntaxless#RemoveSyntax()
+  autocmd FileType,BufNewFile,BufRead * call syntaxless#RemoveSyntax(0)
+  autocmd ColorScheme * call syntaxless#RemoveSyntax(1)
 augroup END
 
 command! -nargs=0 SyntaxlessDisableForSession :call syntaxless#SetEnabled(0)
